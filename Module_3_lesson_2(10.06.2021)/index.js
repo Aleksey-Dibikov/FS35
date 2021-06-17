@@ -77,109 +77,109 @@
  * Типов транзацкий всего два.
  * Можно положить либо снять деньги со счета.
  */
-const Transaction = {
-  DEPOSIT: "deposit",
-  WITHDRAW: "withdraw",
-};
+// const Transaction = {
+//   DEPOSIT: "deposit",
+//   WITHDRAW: "withdraw",
+// };
 
-/*
- * Каждая транзакция это объект со свойствами: id, type и amount
- */
+// /*
+//  * Каждая транзакция это объект со свойствами: id, type и amount
+//  */
 
-const account = {
-  // Текущий баланс счета
-  balance: 0,
+// const account = {
+//   // Текущий баланс счета
+//   balance: 0,
 
-  // История транзакций
-  transactions: [],
+//   // История транзакций
+//   transactions: [],
 
-  /*
-   * Метод создает и возвращает объект транзакции.
-   * Принимает сумму и тип транзакции.
-   */
-  createTransaction(amount, type) {
-    return {
-      id: this.transactions.length,
-      amount,
-      type,
-    };
-  },
+//   /*
+//    * Метод создает и возвращает объект транзакции.
+//    * Принимает сумму и тип транзакции.
+//    */
+//   createTransaction(amount, type) {
+//     return {
+//       id: this.transactions.length,
+//       amount,
+//       type,
+//     };
+//   },
 
-  /*
-   * Метод отвечающий за добавление суммы к балансу.
-   * Принимает сумму танзакции.
-   * Вызывает createTransaction для создания объекта транзакции
-   * после чего добавляет его в историю транзакций
-   */
-  deposit(amount) {
-    this.balance += amount;
-    const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
-    this.transactions.push(transaction);
-  },
+//   /*
+//    * Метод отвечающий за добавление суммы к балансу.
+//    * Принимает сумму танзакции.
+//    * Вызывает createTransaction для создания объекта транзакции
+//    * после чего добавляет его в историю транзакций
+//    */
+//   deposit(amount) {
+//     this.balance += amount;
+//     const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
+//     this.transactions.push(transaction);
+//   },
 
-  /*
-   * Метод отвечающий за снятие суммы с баланса.
-   * Принимает сумму танзакции.
-   * Вызывает createTransaction для создания объекта транзакции
-   * после чего добавляет его в историю транзакций.
-   *
-   * Если amount больше чем текущий баланс, выводи сообщение
-   * о том, что снятие такой суммы не возможно, недостаточно средств.
-   */
-  withdraw(amount) {
-    this.balance -= amount;
-    const transaction = this.createTransaction(amount, Transaction.WITHDRAW);
-    this.transactions.push(transaction);
-  },
+//   /*
+//    * Метод отвечающий за снятие суммы с баланса.
+//    * Принимает сумму танзакции.
+//    * Вызывает createTransaction для создания объекта транзакции
+//    * после чего добавляет его в историю транзакций.
+//    *
+//    * Если amount больше чем текущий баланс, выводи сообщение
+//    * о том, что снятие такой суммы не возможно, недостаточно средств.
+//    */
+//   withdraw(amount) {
+//     this.balance -= amount;
+//     const transaction = this.createTransaction(amount, Transaction.WITHDRAW);
+//     this.transactions.push(transaction);
+//   },
 
-  /*
-   * Метод возвращает текущий баланс
-   */
-  getBalance() {
-    return this.balance;
-  },
+//   /*
+//    * Метод возвращает текущий баланс
+//    */
+//   getBalance() {
+//     return this.balance;
+//   },
 
-  /*
-   * Метод ищет и возвращает объект транзации по id
-   */
-  getTransactionDetails(id) {
-    for (let transaction of this.transactions) {
-      if (transaction.id === id) {
-        return transaction;
-      }
-    }
-    return "Transaction Not Exist";
-  },
+//   /*
+//    * Метод ищет и возвращает объект транзации по id
+//    */
+//   getTransactionDetails(id) {
+//     for (let transaction of this.transactions) {
+//       if (transaction.id === id) {
+//         return transaction;
+//       }
+//     }
+//     return "Transaction Not Exist";
+//   },
 
-  /*
-   * Метод возвращает количество средств
-   * определенного типа транзакции из всей истории транзакций
-   */
-  getTransactionTotal(type) {
-    const filteredTransactions = [];
-    let total = 0;
-    for (let transaction of this.transactions) {
-      if (transaction.type === type) {
-        filteredTransactions.push(transaction);
-      }
-    }
+//   /*
+//    * Метод возвращает количество средств
+//    * определенного типа транзакции из всей истории транзакций
+//    */
+//   getTransactionTotal(type) {
+//     const filteredTransactions = [];
+//     let total = 0;
+//     for (let transaction of this.transactions) {
+//       if (transaction.type === type) {
+//         filteredTransactions.push(transaction);
+//       }
+//     }
 
-    for (let transaction of filteredTransactions) {
-      total += transaction.amount;
-    }
-    return total;
-  },
-};
+//     for (let transaction of filteredTransactions) {
+//       total += transaction.amount;
+//     }
+//     return total;
+//   },
+// };
 
-// console.log(`account`, account);
-// console.log("result", account.createTransaction(100, Transaction.DEPOSIT));
-account.deposit(100);
-account.deposit(115);
-account.withdraw(50);
-console.log(account.getTransactionDetails(10));
-console.log("balance", account.getBalance());
-console.log(`history`, account.transactions);
-console.log(`filter`, account.getTransactionTotal(Transaction.WITHDRAW));
+// // console.log(`account`, account);
+// // console.log("result", account.createTransaction(100, Transaction.DEPOSIT));
+// account.deposit(100);
+// account.deposit(115);
+// account.withdraw(50);
+// console.log(account.getTransactionDetails(10));
+// console.log("balance", account.getBalance());
+// console.log(`history`, account.transactions);
+// console.log(`filter`, account.getTransactionTotal(Transaction.WITHDRAW));
 
 // let a = {
 //     x: 1,
@@ -379,3 +379,77 @@ console.log(`filter`, account.getTransactionTotal(Transaction.WITHDRAW));
 // }
 // console.log(getAllProps("price"));
 //  ['Speed potion', 'Dragon breath', 'Stone skin']
+
+
+// const products = [
+//   { name: 'Radar', price: 1300, quantity: 4 },
+//   { name: 'Scanner', price: 2700, quantity: 3 },
+//   { name: 'Droid', price: 400, quantity: 7 },
+//   { name: 'Grip', price: 1200, quantity: 9 },
+// ];
+
+// function getAllPropValues(propName) {
+//   // Change code below this line
+//   const result = [];
+//   for (let prod of products) {
+//   	if (propName === prod.name) 
+//       result.push(propName);
+//   } 
+//   // Change code above this line
+// }
+// console.log(getAllPropValues('name'));
+
+// const atTheOldToad = {
+//   potions: [
+//     { name: 'Speed potion', price: 460 },
+//     { name: 'Dragon breath', price: 780 },
+//     { name: 'Stone skin', price: 520 },
+//   ],
+//   // Change code below this line
+//   getPotions() {
+//     return this.potions;
+//   },
+//   addPotion(potionName) {
+//     if (this.potions.includes(potionName)) {
+//       return Potion ${potionName} is already equipped!;
+//     }
+
+//     this.potions.push(potionName);
+//   },
+//   removePotion(potionName) {
+//     const potionIndex = this.potions.map(function (potions) {return potions.name}).indexOf(potionName);
+
+//     if (potionIndex === -1) {
+//       return Potion ${potionName} is not in inventory!;
+//     }
+
+//     this.potions.splice(potionIndex, 1);
+//   },
+//   updatePotionName(oldName, newName) {
+//     const potionIndex = this.potions.map(function (e) {return e.name}).indexOf(oldName);
+
+//     if (potionIndex === -1) {
+//       return Potion ${oldName} is not in inventory!;
+//     }
+
+//     this.potions.splice(potionIndex, 1, {name: newName, price: this.potions[potionIndex].price});
+//   },
+// };
+
+const orders = [
+  { email: 'solomon@topmail.ua', dish: 'Burger' },
+  { email: 'artemis@coldmail.net', dish: 'Pizza' },
+  { email: 'jacob@mail.com', dish: 'Taco' },
+];
+
+// Пиши код ниже этой строки
+function composeMessage(position) {
+return `Готовим ${this.dish} для ${this.email}.Ваш заказ ${position}-й в очереди.`;
+}
+
+const messages = [];
+for (let i = 0; i < orders.length; i += 1) {
+let result = composeMessage.call(orders[i], i+1);
+messages.push(result)
+}
+console.log(messages);
